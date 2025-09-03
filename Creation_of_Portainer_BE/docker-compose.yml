@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  portainer:
+    image: portainer/portainer-ee:lts
+    container_name: portainer
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000" # Agent port
+      - "127.0.0.1:9443:9443" # HTTPS UI port
+      - "127.0.0.1:9000:9000" # HTTP port (optional, for legacy)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/
+      
+    # environment:
+    #   - TZ=Asia/Kolkata # Set to IST (Indian Standard Time)
+volumes:
+  portainer_data:
